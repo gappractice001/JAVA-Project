@@ -2,8 +2,8 @@ name: ContanarizedBuildACR
 
 on: workflow_dispatch
 
-permissions:
-  id-token: write
+permissions:             # OpenID Connect (OIDC) authentication. requireds read write permission:
+  id-token: write        # other wise gives error: Failed to fetch federated token from GitHub. Please make sure to give write permissions to id-token in the workflow
   contents: read
 
 jobs:
@@ -13,7 +13,7 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v4         
 
-    # Login to Azure using OIDC or a Service Principal
+    # Login to Azure using OIDC for authentication
     - name: Azure CLI login
       uses: azure/login@v2
       with:

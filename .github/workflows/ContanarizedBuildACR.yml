@@ -13,7 +13,7 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v4         
 
-    # Login to Azure using OIDC for authentication
+    # Login to Azure using OIDC for authentication                  authentacting github to Azure, so that it can have acceess to use az commands in Azure
     - name: Azure CLI login
       uses: azure/login@v2
       with:
@@ -21,7 +21,7 @@ jobs:
         tenant-id: ${{ vars.AZURE_TENANT_ID }}
         subscription-id: ${{ secrets.AZURE_SUBSCRIPTION_ID }}
 
-    - name: Azure ACR login
+    - name: Azure ACR login                                           # using current loging credentials logining to docker to ACR to publish images
       run: az acr login --name registryforcimages   #  ACR name
 
     - name: Docker Build 
